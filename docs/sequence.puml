@@ -1,0 +1,76 @@
+@startuml Course Platform Sequence Diagram
+
+' Define participants
+participant "Client" as client
+participant "HTTP Handler" as handler
+participant "Service Layer" as service
+participant "Use Case" as usecase
+participant "Repository" as repo
+participant "In-Memory Store" as store
+
+' Create Course Sequence
+== Create Course ==
+client -> handler: POST /v1/courses
+handler -> service: CreateCourse(request)
+service -> usecase: CreateCourse(ctx, repo, request)
+usecase -> repo: Create(ctx, course)
+repo -> store: Store course
+store --> repo: Course stored
+repo --> usecase: Success
+usecase --> service: CourseResponse
+service --> handler: CourseResponse
+handler --> client: 201 Created
+
+' Get Course Sequence
+== Get Course ==
+client -> handler: GET /v1/courses/:id
+handler -> service: GetCourse(id)
+service -> usecase: GetCourse(ctx, repo, id)
+usecase -> repo: GetByID(ctx, id)
+repo -> store: Retrieve course
+store --> repo: Course data
+repo --> usecase: Course
+usecase --> service: CourseResponse
+service --> handler: CourseResponse
+handler --> client: 200 OK
+
+' List Courses Sequence
+== List Courses ==
+client -> handler: GET /v1/courses
+handler -> service: ListCourses()
+service -> usecase: ListCourses(ctx, repo)
+usecase -> repo: List(ctx)
+repo -> store: Retrieve all courses
+store --> repo: Course list
+repo --> usecase: Courses
+usecase --> service: CoursesResponse
+service --> handler: CoursesResponse
+handler --> client: 200 OK
+
+' Delete Course Sequence
+== Delete Course ==
+client -> handler: DELETE /v1/courses/:id
+handler -> service: DeleteCourse(id)
+service -> usecase: DeleteCourse(ctx, repo, id)
+usecase -> repo: Delete(ctx, id)
+repo -> store: Remove course
+store --> repo: Success
+repo --> usecase: Success
+usecase --> service: Success
+service --> handler: Success
+handler --> client: 204 No Content
+
+' Search Courses Sequence
+== Search Courses ==
+client -> handler: POST /v1/courses/search
+handler -> service: SearchCourses(request)
+service -> usecase: SearchCourses(ctx, repo, request)
+usecase -> repo: Search(ctx, query)
+repo -> store: Search courses
+store --> repo: Matching courses
+repo --> usecase: Courses
+usecase --> service: CoursesResponse
+service --> handler: CoursesResponse
+handler --> client: 200 OK
+
+@enduml 
