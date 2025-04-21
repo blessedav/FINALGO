@@ -4,29 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b1ed009c-0cf5-446f-9bc5-2c65aabb29b9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MS/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/MS/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MS/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/MS/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MS/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/MS/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MS/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/MS/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MS/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/MS/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MS/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/MS/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MS/internal/app/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/MS/internal/app/app.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MS/internal/app/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/MS/internal/app/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MS/internal/app/config/local.env" beforeDir="false" afterPath="$PROJECT_DIR$/MS/internal/app/config/local.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MS/internal/app/connections/conn.go" beforeDir="false" afterPath="$PROJECT_DIR$/MS/internal/app/connections/conn.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MS/internal/app/store/client_store.go" beforeDir="false" afterPath="$PROJECT_DIR$/MS/internal/app/store/client_store.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MS/internal/app/store/repository_store.go" beforeDir="false" afterPath="$PROJECT_DIR$/MS/internal/app/store/repository_store.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MS/internal/deliveries/book/http/v1/handler.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MS/internal/deliveries/book/http/v1/router.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MS/internal/repositories/book/repository.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MS/internal/services/book/service.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MS/internal/usecases/book/save_book.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MS/pkg/domain/book.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MS/pkg/reqresp/save_book.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-    </list>
+    <list default="true" id="b1ed009c-0cf5-446f-9bc5-2c65aabb29b9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
