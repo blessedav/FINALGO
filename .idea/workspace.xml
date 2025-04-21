@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b1ed009c-0cf5-446f-9bc5-2c65aabb29b9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/MS/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/MS/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/MS/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/MS/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/MS/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/MS/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS/internal/app/app.go" beforeDir="false" afterPath="$PROJECT_DIR$/MS/internal/app/app.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS/internal/app/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/MS/internal/app/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS/internal/app/config/local.env" beforeDir="false" afterPath="$PROJECT_DIR$/MS/internal/app/config/local.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS/internal/app/connections/conn.go" beforeDir="false" afterPath="$PROJECT_DIR$/MS/internal/app/connections/conn.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS/internal/app/store/client_store.go" beforeDir="false" afterPath="$PROJECT_DIR$/MS/internal/app/store/client_store.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS/internal/app/store/repository_store.go" beforeDir="false" afterPath="$PROJECT_DIR$/MS/internal/app/store/repository_store.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS/internal/deliveries/book/http/v1/handler.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS/internal/deliveries/book/http/v1/router.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS/internal/repositories/book/repository.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS/internal/services/book/service.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS/internal/usecases/book/save_book.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS/pkg/domain/book.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MS/pkg/reqresp/save_book.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+        <option value="Go Application" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file:///usr/local/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2vB3l5t1G8jZueDC9wJmJeStOAE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go Application&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/david/Desktop/FINALGO&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-d297c17c1fbd-57c114c3cede-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-243.24978.59" />
+        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-GO-243.24978.59" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>
