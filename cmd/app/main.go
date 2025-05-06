@@ -14,9 +14,7 @@ import (
 
 func main() {
 	// Load environment variables
-	if err := godotenv.Load(); err != nil {
-		log.Fatal("Error loading .env file")
-	}
+	_ = godotenv.Load() // Просто попытка загрузить .env, но не критично если его нет
 
 	// Initialize MongoDB connection
 	repo, err := repositories.NewMongoDBRepository()
@@ -30,7 +28,20 @@ func main() {
 
 	// Create router
 	router := gin.Default()
-	router.Use(cors.Default())
+
+	// Log all incoming requests (including OPTIONS)
+	router.Use(func(c *gin.Context) {
+		log.Printf("Incoming request: %s %s", c.Request.Method, c.Request.URL.Path)
+		c.Next()
+	})
+
+	router.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"http://localhost:3000"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+	}))
 
 	// Public routes
 	router.POST("/api/auth/register", authHandler.Register)

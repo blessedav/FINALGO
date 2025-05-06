@@ -17,8 +17,16 @@ function App() {
       fetch(`${API}/books`, {
         headers: { Authorization: `Bearer ${token}` }
       })
-        .then(res => res.json())
-        .then(data => setBooks(data.books || []));
+        .then(async res => {
+          if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            console.error("Ошибка при получении книг:", err);
+            alert(err.error || "Ошибка при получении книг");
+            return { books: [] };
+          }
+          return res.json();
+        })
+        .then(data => setBooks(data.books || data || []));
     }
   }, [token]);
 
@@ -29,63 +37,104 @@ function App() {
     const body = isLogin
       ? { email: auth.email, password: auth.password }
       : { username: auth.username, email: auth.email, password: auth.password };
-    const res = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
-    const data = await res.json().catch(() => ({}));
-    console.log("Ответ сервера:", data);
-    if (data.token) {
-      setToken(data.token);
-      localStorage.setItem("token", data.token);
-    } else {
-      alert(data.error || "Auth error");
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json().catch(() => ({}));
+      console.log("Ответ сервера:", data);
+      if (data.token) {
+        setToken(data.token);
+        localStorage.setItem("token", data.token);
+      } else {
+        alert(data.error || "Auth error");
+      }
+    } catch (err) {
+      console.error("Ошибка сети при аутентификации:", err);
+      alert("Ошибка сети при аутентификации");
     }
   };
 
   // Создать книгу
   const handleCreate = async (e) => {
     e.preventDefault();
-    const res = await fetch(`${API}/books`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        ...form,
-        tags: form.tags.split(",").map((t) => t.trim()),
-      }),
-    });
-    if (res.ok) {
-      setForm({ title: "", author: "", description: "", tags: "" });
-      // обновить список книг
-      const booksRes = await fetch(`${API}/books`, {
-        headers: { Authorization: `Bearer ${token}` },
+    try {
+      const res = await fetch(`${API}/books`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          ...form,
+          tags: form.tags.split(",").map((t) => t.trim()),
+        }),
       });
-      const booksData = await booksRes.json();
-      setBooks(booksData.books || []);
-    } else {
-      alert("Ошибка при создании книги");
+      const data = await res.json().catch(() => ({}));
+      if (res.ok) {
+        setForm({ title: "", author: "", description: "", tags: "" });
+        // обновить список книг
+        fetch(`${API}/books`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+          .then(async res => {
+            if (!res.ok) {
+              const err = await res.json().catch(() => ({}));
+              console.error("Ошибка при получении книг:", err);
+              alert(err.error || "Ошибка при получении книг");
+              return { books: [] };
+            }
+            return res.json();
+          })
+          .then(data => setBooks(data.books || data || []));
+      } else {
+        console.error("Ошибка при создании книги:", data);
+        alert(data.error || "Ошибка при создании книги");
+      }
+    } catch (err) {
+      console.error("Ошибка сети при создании книги:", err);
+      alert("Ошибка сети при создании книги");
     }
   };
 
   // Удалить книгу
   const handleDelete = async (id) => {
-    await fetch(`${API}/books/${id}`, {
-      method: "DELETE",
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    setBooks(books.filter((b) => b.id !== id));
+    try {
+      const res = await fetch(`${API}/books/${id}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        console.error("Ошибка при удалении книги:", data);
+        alert(data.error || "Ошибка при удалении книги");
+        return;
+      }
+      setBooks(books.filter((b) => b.id !== id && b._id !== id));
+    } catch (err) {
+      console.error("Ошибка сети при удалении книги:", err);
+      alert("Ошибка сети при удалении книги");
+    }
   };
 
   const handleView = async (id) => {
-    const res = await fetch(`${API}/books/${id}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const data = await res.json();
-    setViewBook(data);
+    try {
+      const res = await fetch(`${API}/books/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        console.error("Ошибка при получении книги:", data);
+        alert(data.error || "Ошибка при получении книги");
+        return;
+      }
+      setViewBook(data);
+    } catch (err) {
+      console.error("Ошибка сети при получении книги:", err);
+      alert("Ошибка сети при получении книги");
+    }
   };
 
   const startEdit = (book) => {
@@ -100,28 +149,43 @@ function App() {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    const res = await fetch(`${API}/books/${editingBook.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        ...form,
-        tags: form.tags.split(",").map((t) => t.trim()),
-      }),
-    });
-    if (res.ok) {
-      setEditingBook(null);
-      setForm({ title: "", author: "", description: "", tags: "" });
-      // обновить список книг
-      const booksRes = await fetch(`${API}/books`, {
-        headers: { Authorization: `Bearer ${token}` },
+    try {
+      const res = await fetch(`${API}/books/${editingBook.id || editingBook._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          ...form,
+          tags: form.tags.split(",").map((t) => t.trim()),
+        }),
       });
-      const booksData = await booksRes.json();
-      setBooks(booksData.books || []);
-    } else {
-      alert("Ошибка при обновлении книги");
+      const data = await res.json().catch(() => ({}));
+      if (res.ok) {
+        setEditingBook(null);
+        setForm({ title: "", author: "", description: "", tags: "" });
+        // обновить список книг
+        fetch(`${API}/books`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+          .then(async res => {
+            if (!res.ok) {
+              const err = await res.json().catch(() => ({}));
+              console.error("Ошибка при получении книг:", err);
+              alert(err.error || "Ошибка при получении книг");
+              return { books: [] };
+            }
+            return res.json();
+          })
+          .then(data => setBooks(data.books || data || []));
+      } else {
+        console.error("Ошибка при обновлении книги:", data);
+        alert(data.error || "Ошибка при обновлении книги");
+      }
+    } catch (err) {
+      console.error("Ошибка сети при обновлении книги:", err);
+      alert("Ошибка сети при обновлении книги");
     }
   };
 

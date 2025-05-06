@@ -1,0 +1,76 @@
+@startuml
+!theme plain
+skinparam componentStyle rectangle
+
+' System Architecture Diagram
+[Frontend React App] --> [API Gateway]
+[API Gateway] --> [User Service]
+[API Gateway] --> [Book Service]
+[User Service] --> [MongoDB]
+[Book Service] --> [MongoDB]
+
+note right of [Frontend React App]
+  React + TypeScript
+  Material-UI
+  React Router
+end note
+
+note right of [API Gateway]
+  Go Gin Framework
+  JWT Authentication
+  Rate Limiting
+end note
+
+note right of [User Service]
+  Go Microservice
+  User Management
+  Authentication
+end note
+
+note right of [Book Service]
+  Go Microservice
+  Book Management
+  CRUD Operations
+end note
+
+@enduml
+
+@startuml
+' User Registration Flow
+actor User
+participant Frontend
+participant "API Gateway" as Gateway
+participant "User Service" as UserService
+participant MongoDB
+
+User -> Frontend: Fill registration form
+Frontend -> Gateway: POST /api/auth/register
+Gateway -> UserService: Forward request
+UserService -> MongoDB: Check if email exists
+MongoDB --> UserService: Email not found
+UserService -> UserService: Hash password
+UserService -> MongoDB: Create user
+MongoDB --> UserService: User created
+UserService --> Gateway: Return success
+Gateway --> Frontend: Return JWT token
+Frontend --> User: Show success message
+@enduml
+
+@startuml
+' Book Creation Flow
+actor User
+participant Frontend
+participant "API Gateway" as Gateway
+participant "Book Service" as BookService
+participant MongoDB
+
+User -> Frontend: Fill book details
+Frontend -> Gateway: POST /api/books
+Gateway -> Gateway: Validate JWT
+Gateway -> BookService: Forward request
+BookService -> MongoDB: Create book
+MongoDB --> BookService: Book created
+BookService --> Gateway: Return success
+Gateway --> Frontend: Return book data
+Frontend --> User: Show success message
+@enduml 

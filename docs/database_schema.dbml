@@ -1,0 +1,21 @@
+// Database Schema for SmartNotes
+// You can paste this directly into dbdiagram.io
+
+Table users {
+  id ObjectId [pk]
+  email string [unique]
+  password string
+  name string
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table books {
+  id ObjectId [pk]
+  title string
+  author string
+  description string
+  user_id ObjectId [ref: > users.id]
+  created_at timestamp
+  updated_at timestamp
+} 
